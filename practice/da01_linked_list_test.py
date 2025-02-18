@@ -25,15 +25,15 @@ class LinkedList:                           # ex: 이 클래스의 이름은 Lin
             return f"{self.data}"
 
     def push_back(self, data):              # append 메서드 , 매개변수로 data를 입력 받는다. (리스트의 마지막에 요소를 추가하는 동작)  
-        new_node = self.Node(data)          ## 1. 받아온 data값을 Node클래스의 data에 저장하고, 그걸 new_node 변수에 저장
-        if not self.head:                   ## 2. head의 값이 None이면
-            self.head = new_node            ## 3. LinkedList클래스의 head에 new_node를 저장
-            prevNode = None                 ## 4. prevNode 변수값을 None으로
-        else:
-            self.nodes[-1].next = new_node  
-            prevNode = self.nodes[-1]       
-        self.nodes.append(new_node)         ## 5. nodes 리스트에 new_node의 값을 추가
-        self.nodes[-1].prev = prevNode      ## 6. 
+        new_node = self.Node(data)          ## 받아온 data를 new_node에 저장
+        if not self.head:                   ## 노드가 처음 들어왔으면(헤드가 없으면)
+            self.head = new_node            ## head에 첫 노드를 입력
+            prevNode = None                 ## 첫 node라서 preNode가 없음
+        else:                               ## 처음 들어온 node가 아니면(헤드가 있으면)
+            self.nodes[-1].next = new_node  ## 마지막 노드 뒤에 새로운 노드 연결(마지막노드.next -> new_node)
+            prevNode = self.nodes[-1]       ## prevNode
+        self.nodes.append(new_node)         ## 새로들어온 node를 리스트에 저장
+        self.nodes[-1].prev = prevNode      ## nodes 리스트의 가장 마지막 node의 prev에 prevNode 저장
     
 
     def insert(self,find_data,insert_data): # insert 메서드 , 매개변수로 찾을값, 넣을값을 받고, 리스트의 찾을값이 있는 위치에 넣을값을 넣습니다.
